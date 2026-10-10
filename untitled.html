@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AD ASTRA – Kelas X/10 A</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04060f;--ink:#e6eefc;--mut:#8ea3c7;--cy:#4cc9f0;--pk:#ff7eb6;--bl:#6aa8ff;--gd:#ffd166;--card:rgba(14,22,48,.62);--ln:rgba(76,201,240,.25);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:-3}
+.neb{position:fixed;z-index:-2;border-radius:50%;filter:blur(70px);opacity:.35;animation:drift 26s ease-in-out infinite alternate}
+.n1{width:60vmax;height:60vmax;left:-20vmax;top:-15vmax;background:#3a1c8f}
+.n2{width:55vmax;height:55vmax;right:-20vmax;bottom:-18vmax;background:#0b6fa8;animation-delay:-9s}
+.n3{width:35vmax;height:35vmax;left:30%;top:40%;background:#8a1c6e;opacity:.2;animation-delay:-15s}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.2)}}
+.planet{position:fixed;z-index:-1;right:-40px;top:22vh;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffd9a0,#d9822b 55%,#5a2a0a);box-shadow:inset -18px -10px 30px rgba(0,0,0,.6),0 0 40px rgba(255,170,80,.25);animation:float 9s ease-in-out infinite;opacity:.75}
+.planet::after{content:"";position:absolute;left:-40px;right:-40px;top:48px;height:26px;border:3px solid rgba(255,220,160,.55);border-radius:50%;transform:rotate(-18deg)}
+.moon{position:fixed;z-index:-1;left:-30px;bottom:14vh;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#9fb2cf 60%,#40506b);opacity:.55;animation:float 12s ease-in-out infinite reverse}
+.rocket{position:fixed;z-index:-1;font-size:30px;left:-60px;bottom:-40px;animation:fly 22s linear infinite;animation-delay:3s}
+@keyframes fly{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(120vw,-120vh) rotate(0)}}
+@keyframes float{50%{transform:translateY(-22px) rotate(3deg)}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:rgba(4,8,22,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:700 15px Orbitron,sans-serif;letter-spacing:1.5px}
+.brand img{width:34px;height:34px;border-radius:9px;background:#fff;object-fit:cover}
+.hbtn{color:var(--cy);border:1px solid var(--ln);padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:800;font-size:13px;background:rgba(76,201,240,.08);transition:.25s}
+.hbtn:hover{background:var(--cy);color:#04101e}
+main{max-width:860px;margin:0 auto;padding:22px 16px 90px}
+.pg{animation:pin .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pin{from{opacity:0;transform:translateY(26px) scale(.98);filter:blur(6px)}}
+.rv{animation:rv .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*.05s)}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}}
+h1,h2,h3{font-family:Orbitron,sans-serif;margin:0}
+.title{font-size:clamp(22px,6vw,32px);font-weight:900;background:linear-gradient(90deg,#fff,var(--cy),#b69cff,#fff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;letter-spacing:1px}
+@keyframes shine{to{background-position:250% 0}}
+.sub{color:var(--mut);margin:6px 0 20px;font-size:14px}
+.crumb{display:inline-flex;gap:6px;align-items:center;color:var(--mut);text-decoration:none;font-size:13px;font-weight:700;margin-bottom:14px}
+.crumb:hover{color:var(--cy)}
+.card{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--ln);border-radius:18px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:.3s}
+a.card{display:block;color:inherit;text-decoration:none}
+a.card:hover{transform:translateY(-5px);border-color:var(--cy);box-shadow:0 14px 34px rgba(76,201,240,.22)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font:800 15px Nunito,sans-serif;color:#04101e;padding:14px 28px;border-radius:99px;background:linear-gradient(90deg,var(--cy),#7b9cff);box-shadow:0 0 24px rgba(76,201,240,.5);animation:pulse 2.6s infinite;transition:.25s}
+.btn:hover{transform:scale(1.06)}
+@keyframes pulse{50%{box-shadow:0 0 42px rgba(123,156,255,.85)}}
+/* hero */
+.hero{text-align:center;padding:10px 0}
+.orbit{position:relative;width:200px;height:200px;margin:8px auto 18px;display:grid;place-items:center}
+.orbit img{width:132px;height:132px;border-radius:26px;background:#fff;object-fit:cover;box-shadow:0 0 40px rgba(76,201,240,.55);animation:float 5s ease-in-out infinite}
+.orbit i{position:absolute;inset:0;border:1px dashed rgba(76,201,240,.5);border-radius:50%;animation:spin 14s linear infinite}
+.orbit i+i{inset:-14px;border-color:rgba(182,156,255,.4);animation-duration:22s;animation-direction:reverse}
+.orbit i::after{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gd);box-shadow:0 0 12px var(--gd)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hello{font-size:15px;color:var(--cy);letter-spacing:3px;text-transform:uppercase;font-weight:800}
+.stats{display:flex;justify-content:center;gap:12px;margin:22px 0;flex-wrap:wrap}
+.stat{min-width:92px;padding:12px;text-align:center}
+.stat b{display:block;font:900 24px Orbitron;color:var(--gd)}
+.stat span{font-size:12px;color:var(--mut)}
+.menu-i{display:flex;gap:14px;align-items:center}
+.menu-i .ic{font-size:30px;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(76,201,240,.2),rgba(182,156,255,.2));border:1px solid var(--ln);flex:none}
+.menu-i h3{font-size:14px;color:#fff;margin-bottom:4px}.menu-i p{margin:0;color:var(--mut);font-size:12.5px}
+/* people */
+.P{color:var(--pk)}.L{color:var(--bl)}
+.org{display:flex;flex-direction:column;align-items:center;gap:14px}
+.org .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;width:100%}
+.role{min-width:150px;flex:1;max-width:260px;text-align:center}
+.role small{display:block;color:var(--gd);font:700 11px Orbitron;letter-spacing:1px;margin-bottom:6px}
+.role b{font-size:14px}
+.mem{display:flex;align-items:center;gap:12px;padding:10px 12px}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font:800 13px Orbitron;color:#fff;flex:none}
+.av.P{background:linear-gradient(135deg,#ff7eb6,#a64dff);color:#fff}.av.L{background:linear-gradient(135deg,#4cc9f0,#3a54d6);color:#fff}
+.mem b{font-size:14px;display:block;line-height:1.25}.mem em{font-style:normal;font-size:11px;color:var(--gd)}
+.no{color:var(--mut);font:700 11px Orbitron;margin-left:auto}
+input.s{width:100%;padding:13px 16px;border-radius:99px;border:1px solid var(--ln);background:rgba(10,16,38,.8);color:#fff;font:600 14px Nunito;margin-bottom:14px;outline:0}
+input.s:focus{border-color:var(--cy)}
+.legend{display:flex;gap:16px;font-size:13px;font-weight:800;margin-bottom:14px}
+/* tabs */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px}
+.tab{border:1px solid var(--ln);background:rgba(14,22,48,.7);color:var(--mut);padding:9px 18px;border-radius:99px;font:800 13px Nunito;cursor:pointer;white-space:nowrap;transition:.25s}
+.tab.on{background:linear-gradient(90deg,var(--cy),#7b9cff);color:#04101e;border-color:transparent;box-shadow:0 0 16px rgba(76,201,240,.5)}
+.tl{display:flex;gap:12px;padding:10px 4px;border-bottom:1px solid rgba(76,201,240,.12);align-items:center}
+.tl:last-child{border:0}
+.tl time{font:600 12px Orbitron;color:var(--cy);width:110px;flex:none}
+.tl span{font-weight:700;font-size:14px}
+.tl.br span{color:var(--mut);font-style:italic;font-weight:600}
+.tl.sp span{color:var(--gd)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:99px;background:rgba(76,201,240,.1);border:1px solid var(--ln);font-weight:700;font-size:13px;transition:.2s}
+.chip:hover{transform:translateY(-3px);background:rgba(76,201,240,.25)}
+.sec{font:700 13px Orbitron;color:var(--gd);margin:6px 0 12px;letter-spacing:1px}
+/* denah */
+.scroll{overflow-x:auto;padding-bottom:10px}
+.room{min-width:560px;position:relative}
+.front{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:24px}
+.board{flex:1;height:64px;border-radius:8px;background:#0e1d3a;border:2px solid #3a5a8c;position:relative;overflow:hidden}
+.board::after{content:"";position:absolute;left:10px;right:10px;top:16px;height:3px;background:var(--cy);box-shadow:0 12px 0 #ff9f1c,0 24px 0 #7bd88f;animation:code 3s ease-in-out infinite alternate}
+@keyframes code{from{width:20%}to{width:85%}}
+.tdesk{padding:8px 24px;border-radius:8px;background:linear-gradient(135deg,#d7f5e2,#a9e3c3);color:#0b3a2a;font:900 12px Orbitron;box-shadow:0 0 22px rgba(120,230,170,.45)}
+.rows{display:flex;flex-direction:column;gap:12px}
+.dr{display:flex;gap:14px;justify-content:space-between}
+.pair{display:flex;gap:3px;flex:1}
+.d{flex:1;text-align:center;animation:rv .6s both;animation-delay:calc(var(--i)*.03s)}
+.d u{display:block;text-decoration:none;font:800 10px Nunito;padding:3px 2px;border-radius:5px;background:#fff;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d u.P{color:#e91e8c}.d u.L{color:#1e5bd6}
+.d s{display:block;height:26px;border-radius:5px 5px 3px 3px;background:linear-gradient(#f2b866,#d98f2c);border-bottom:5px solid #7a8499;transition:.25s}
+.d:hover s{transform:translateY(-3px);box-shadow:0 8px 14px rgba(255,170,60,.4)}
+.d.e{opacity:.35}
+/* kesepakatan */
+.pact{display:flex;gap:12px;align-items:center;border-radius:99px;border:1px solid rgba(255,209,102,.5);padding:12px 18px;background:rgba(255,209,102,.06)}
+.pact .ic{font-size:24px}.pact p{margin:0;font-weight:700;font-size:13.5px;line-height:1.4}
+.commit{margin-top:18px;padding:22px;border-radius:14px;border:3px dashed #fff;text-align:center;position:relative;background:rgba(0,0,0,.35)}
+.commit h3{color:var(--gd);font-size:16px;margin-bottom:10px}.commit p{margin:0;line-height:1.7;font-size:14px}
+.empty{text-align:center;padding:50px 16px}.empty .big{font-size:64px;animation:float 4s ease-in-out infinite;display:block}
+.gc{display:flex;gap:12px;align-items:center}
+.code{font:900 14px Orbitron;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cy),#7b9cff);color:#04101e;flex:none}
+.gc b{font-size:14px;display:block}.gc span{font-size:12.5px;color:var(--mut)}
+.wm{position:fixed;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));font:600 11px Orbitron;color:rgba(230,238,252,.55);letter-spacing:1px;pointer-events:none;z-index:30;text-shadow:0 0 8px #000}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="neb n1"></div><div class="neb n2"></div><div class="neb n3"></div>
+<div class="planet"></div><div class="moon"></div><div class="rocket">🚀</div>
+<header>
+    <a class="brand" href="#/"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='28' fill='white'/%3E%3Ccircle cx='100' cy='88' r='62' fill='rgb(10,30,80)'/%3E%3Cpath d='M100 14L150 156L124 156L100 84L76 156L50 156Z' fill='rgb(20,85,175)'/%3E%3Cpath d='M26 124Q100 84 176 70L176 94Q108 104 40 146Z' fill='rgb(210,30,40)'/%3E%3Cpath d='M22 104L62 100L62 112L22 118Z M22 124L62 118L62 130L22 140Z' fill='rgb(210,30,40)'/%3E%3Cpath d='M178 62L138 66L138 78L178 74Z' fill='rgb(210,30,40)'/%3E%3Cpolygon points='100,38 104,50 117,50 107,58 111,70 100,62 89,70 93,58 83,50 96,50' fill='white'/%3E%3Cg font-size='13' text-anchor='middle'%3E%3Ctext x='62' y='168' fill='rgb(210,30,40)'%3E★%3C/text%3E%3Ctext x='100' y='172' fill='rgb(10,30,80)'%3E★%3C/text%3E%3Ctext x='138' y='168' fill='rgb(210,30,40)'%3E★%3C/text%3E%3C/g%3E%3Ctext x='100' y='190' font-family='Georgia,serif' font-size='21' font-weight='bold' text-anchor='middle' fill='rgb(10,30,80)'%3EAD ASTRA%3C/text%3E%3C/svg%3E" alt="Logo"><span>AD ASTRA</span></a>
+  <a class="hbtn" href="#/menu">☰ Menu</a>
+</header>
+<main id="view"></main>
+<div class="wm">Dibuat oleh Mike</div>
+
+<script>
+// @ts-nocheck
+const $=s=>document.querySelector(s);
+const tc=s=>s.toLowerCase().replace(/(^|[\s.])\w/g,c=>c.toUpperCase());
+const LOGO=document.querySelector('.brand img').src;
+
+/* ===== DATA ===== */
+const MEM=`AHMAD HANEEF*|AHMAT SYAHRUL GUNAWAN*|ANDROMEDA RADITHYABUMI PAHLEVI*|ANGEL ROMAULI MARPAUNG|ARIYA DIKA JOHENDRA*|AYATHUL HUSNA|Baari Aprilliano Nurhafizh*|FARIS*|Geitsha Farah Dhiya|HAFIZA|Juwita Putri Sherman|KHALILA AYUNDA NESSA|LIDWINA GITA LAURA|LISTRA KIRENE PILADELFIA|Mikha Maharaini Nasya|Mikhael Ro Tua Pasaribu*|MOCH. TAUFIQ HIDAYAH*|MUFLIHATI NABILA AULIA PUTRI|MUHAMMAD DIMAS RANGGA*|MUHAMMAD FATHINUL RIZAL*|Muhammad Ihsan Marbun*|NABILA WINDRIYANI|NAZWA SYAIRA SAIF|NURMALINSIA|Paskah Aprilia Ronauli Manalu|PERONIKA CITRA LESTARI|QURRATUL AINI|RAMA OKTAVIANDY*|RETNO AYUNINGRUM|RISNA ALIFFAH AL ZAHRA|SYIFA AZZAHRA|TEGAR TRI PAMBUDI*|VANIA ANGGRAENI PUTRI|Veneranda Naspasya*|ZAHRA NURSIFA AQILA|ZANZABILA RABICHAH`.split('|').map(n=>({n:tc(n.replace('*','')),g:n.endsWith('*')?'L':'P'}));
+const ROLE={'Muhammad Ihsan Marbun':'Ketua Kelas','Lidwina Gita Laura':'Wakil Ketua','Juwita Putri Sherman':'Bendahara','Nurmalinsia':'Sekretaris','Zahra Nursifa Aqila':'Kebersihan 1','Muhammad Fathinul Rizal':'Kebersihan 2'};
+const ini=n=>n.split(' ').slice(0,2).map(w=>w[0]).join('');
+const J={
+SENIN:`06.45-07.45 UPACARA
+07.45-08.30 Sejarah
+08.30-09.15 Sejarah
+09.15-09.45 ISTIRAHAT
+09.45-10.30 Bahasa Indonesia
+10.30-11.15 Matematika
+11.15-12.00 Matematika
+12.00-12.30 ISTIRAHAT
+12.30-13.15 Konseling
+13.15-13.55 Bahasa Inggris
+13.55-14.35 Ekonomi
+14.45-15.15 Ekonomi`,
+SELASA:`06.45-07.00 LITERASI
+07.00-07.45 Kokulikuler
+07.45-08.30 Kokulikuler
+08.30-09.15 Kimia
+09.15-09.45 ISTIRAHAT
+09.45-10.30 Kimia
+10.30-11.15 PJOK
+11.15-12.00 PJOK
+12.00-12.30 ISTIRAHAT
+12.30-13.15 Seni & Prakarya
+13.15-13.55 Seni & Prakarya
+13.55-14.35 Geografi
+14.35-15.15 Geografi`,
+RABU:`06.45-07.00 LITERASI
+07.00-07.45 Bahasa Indonesia
+07.45-08.30 Bahasa Indonesia
+08.30-09.15 Informatika
+09.15-09.45 ISTIRAHAT
+09.45-10.30 Informatika
+10.30-11.15 Agama
+11.15-12.00 Agama
+12.00-12.30 ISTIRAHAT
+12.30-13.15 Muatan Lokal
+13.15-13.55 Muatan Lokal
+13.55-14.35 Biologi
+14.35-15.15 Biologi`,
+KAMIS:`06.45-07.00 LITERASI
+07.00-07.45 Konseling
+07.45-08.30 Sosiologi
+08.30-09.15 Sosiologi
+09.15-09.45 ISTIRAHAT
+09.45-10.30 Bahasa Inggris
+10.30-11.15 Bahasa Inggris
+11.15-12.00 Fisika
+12.00-12.30 ISTIRAHAT
+12.30-13.15 Fisika
+13.15-14.00 Kokulikuler
+14.00-14.45 Kokulikuler`,
+JUMAT:`06.45-07.40 BERSERI
+07.40-08.20 Pendidikan Kewarganegaraan
+08.20-09.00 Pendidikan Kewarganegaraan
+09.00-09.40 Matematika
+09.40-10.00 ISTIRAHAT
+10.00-10.40 Pembinaan Karakter & Keagamaan
+10.40-11.15 Pembinaan Karakter & Keagamaan`};
+const PK={SENIN:'Andromeda,Hafiza,Listra,Moch.Taufik,Nabila,Rama,Risna,Zanzabila',SELASA:'Ariya,Ayathul,Faris,Geitsha,Mikhael,Nurmalinsia,Zahra Nursifa',RABU:'Angel,Baari,Juwita,M.Dimas,Nazwa,Tegar,Vania',KAMIS:'A. Haneef,Khalila,M.Ihsan,Paskah,Peronika,Retno,Veneranda',JUMAT:'A.Syahrul,L.Gita Laura,Mikha,Muflihati,M.Fathinul,Qurrotul Aini,Syfa Azzahra'};
+const MB={SENIN:['Haneef,Syahrul,Andromeda,Ariya','Angel,Ayathul,Geitsa,Hafiza'],SELASA:['Baari,Faris,Mikhael,Taufiq','Juwita,Khalila,Laura,Listra'],RABU:['Dimas,Fathinul,Ihsan,Rama','Mikha,Muflihati,Nabila,Nazwa'],KAMIS:['Veneranda,Nurmalinsia,Paskah,Peronika','Aini,Retno,Risna,Azra'],JUMAT:['Fathinul,Zahra,Zanzabila,Syahrul','Aini,Dimas,Vania,Ihsan']};
+const GURU=`AD|Awaluddin, S.Pd|Seni dan Prakarya
+AH|Abdul Hakim, S.Pd|Bahasa Inggris
+AP|Aprizal Herunanda, S.Pd|Biologi
+AR|Atina Rizki Mawarnie, S.Pd|Pendidikan Agama
+DA|Diah Retna Lestari, M.Pd|Sejarah
+HR|Heru Prasetyo, S.Pd|Geografi
+IA|Ira Sari Yanti, S.Pd|Matematika
+QQ|Kiki Syarkiyah, M.Pd|Ekonomi
+MD|Mandala Putra M.Siregar, S.Pd|PJOK
+MT|Margareta Evodia, S.Pd|Bimbingan Konseling
+NN|Noron Masnowati, S.Pd|Pendidikan Kewarganegaraan
+NY|Nuryanti, M.Pd|Fisika
+RA|Risna, S.Ag|Pendidikan Agama
+TA|Thea Amira Vasthi, S.Pd|Kimia
+WD|Widasari, S.Pd.K|Pendidikan Agama
+WW|Wiwik, S.Kep|Muatan Lokal
+YG|Yogi Sukma Vituazi, S.Pd|Informatika
+YL|Yulianti AR, S.Pd|Bahasa Indonesia
+YW|Yuni Widyaningsih, S.Sos, M.Pd|Sosiologi`.split('\n').map(l=>l.split('|'));
+/* denah: huruf pertama P/L = warna, _ = kosong */
+const DENAH=[
+'PMikha PRetno LAndromeda LDika LM.Dimas LMikhael LRanda LTegar',
+'PSyifa PPaskah PZahra PNurmalinsia PGeitsha PAngel LRama LFaris',
+'PNazwa PKhalila PAyathul PAini PListra PZanzabila LM.Ihsan LA.Haneef',
+'PRisna PNabila PAulia PHafiza LA.Syahrul LBaari LRizal LM.Taufiq',
+'_ _ PVania PJuwita PPeronika PLaura _ _'].map(r=>r.split(' '));
+const HARI=Object.keys(J);let hari='SENIN';
+
+/* ===== PAGES ===== */
+const bk=(to='menu',t='Menu Utama')=>`<a class="crumb" href="#/${to}">← ${t}</a>`;
+const head=(t,s)=>`<h1 class="title rv">${t}</h1><p class="sub rv" style="--i:1">${s}</p>`;
+const tabs=()=>`<div class="tabs">${HARI.map(h=>`<button class="tab ${h==hari?'on':''}" onclick="hari='${h}';route()">${h}</button>`).join('')}</div>`;
+const P={
+home:()=>`<div class="hero">
+ <div class="orbit rv"><i></i><i></i><img src="${LOGO}" alt="Logo Ad Astra"></div>
+ <div class="hello rv" style="--i:2">✦ Selamat Datang ✦</div>
+ <h1 class="title rv" style="--i:3;font-size:clamp(30px,9vw,52px);margin:8px 0">AD ASTRA</h1>
+ <p class="sub rv" style="--i:4;font-size:15px">Portal resmi Kelas X / 10 A — <i>To The Stars</i></p>
+ <div class="stats rv" style="--i:5"><div class="card stat"><b>${MEM.length}</b><span>Siswa</span></div><div class="card stat"><b>${GURU.length}</b><span>Guru</span></div><div class="card stat"><b>5</b><span>Hari Belajar</span></div></div>
+ <a class="btn rv" style="--i:6" href="#/menu">Lanjut di sini 🚀</a></div>`,
+menu:()=>{const m=[['struktur','👥','Struktur Organisasi','Wali kelas & pengurus kelas'],['anggota','🧑‍🚀','Nama Anggota','Seluruh awak Ad Astra'],['denah','🪑','Denah Tempat Duduk','Posisi duduk tahun 2026/2027'],['jadwal','📅','Jadwal','Pelajaran, piket & MBG'],['prestasi','🏆','Prestasi Kelas','Pencapaian kelas'],['kesepakatan','📜','Kesepakatan Kelas','Komitmen bersama'],['guru','👨‍🏫','Guru Pengajar','Pembimbing di kelas 10 A'],['terima','🌌','Terima Kasih','Ucapan penutup']];
+ return head('MENU UTAMA','Pilih tujuan penjelajahanmu')+`<div class="grid">${m.map((x,i)=>`<a class="card menu-i rv" style="--i:${i+2}" href="#/${x[0]}"><div class="ic">${x[1]}</div><div><h3>${x[2]}</h3><p>${x[3]}</p></div></a>`).join('')}</div>`},
+struktur:()=>{const r=(t,n,g)=>`<div class="card role rv"><small>${t}</small><b class="${g}">${n}</b></div>`;
+ return bk()+head('STRUKTUR ORGANISASI','Awak komando Kelas X / 10 A')+`<div class="org">
+ ${r('WALI KELAS','Yogi Vituazi, S.Pd','')}
+ <div class="row">${r('KETUA KELAS','Muhammad Ihsan Marbun','L')}${r('WAKIL KETUA','Lidwina Gita Laura','P')}</div>
+ <div class="row">${r('BENDAHARA','Juwita Putri Sherman','P')}${r('SEKRETARIS','Nurmalinsia','P')}</div>
+ <div class="row">${r('KEBERSIHAN 1','Zahra Nursifa Aqila','P')}${r('KEBERSIHAN 2','Muhammad Fathinul Rizal','L')}</div></div>
+ <p style="text-align:center;margin-top:24px"><a class="btn" href="#/anggota">Lihat Semua Anggota →</a></p>`},
+anggota:()=>bk()+head('NAMA ANGGOTA',`${MEM.length} awak Ad Astra`)+`<input class="s" placeholder="🔍 Cari nama..." oninput="cari(this.value)"><div class="legend"><span class="P">● Perempuan</span><span class="L">● Laki-laki</span></div>
+ <div class="grid" id="lst">${MEM.map((m,i)=>`<div class="card mem rv" style="--i:${Math.min(i,14)}" data-n="${m.n.toLowerCase()}"><div class="av ${m.g}">${ini(m.n)}</div><div><b class="${m.g}">${m.n}</b>${ROLE[m.n]?`<em>★ ${ROLE[m.n]}</em>`:''}</div><span class="no">${String(i+1).padStart(2,'0')}</span></div>`).join('')}</div>`,
+denah:()=>bk()+head('DENAH TEMPAT DUDUK','Tahun Pelajaran 2026/2027')+`<div class="legend"><span class="P">● Perempuan</span><span class="L">● Laki-laki</span></div>
+ <div class="card"><div class="scroll"><div class="room">
+ <div class="front"><div style="font-size:34px">🚪</div><div class="board"></div><div class="tdesk">GURU</div><div class="board"></div><div style="font-size:30px">🇮🇩</div></div>
+ <div class="rows">${DENAH.map((r,ri)=>`<div class="dr">${[0,2,4,6].map(k=>`<div class="pair">${[r[k],r[k+1]].map((c,j)=>c=='_'?`<div class="d e"><u>&nbsp;</u><s></s></div>`:`<div class="d" style="--i:${ri*8+k+j}"><u class="${c[0]}">${c.slice(1)}</u><s></s></div>`).join('')}</div>`).join('')}</div>`).join('')}</div>
+ <div style="display:flex;justify-content:space-between;margin-top:18px;font-size:28px"><span>🧹</span><span>📚</span></div></div></div>
+ <p class="sub" style="margin:10px 0 0;font-size:12px">↔ Geser ke samping jika layar sempit.</p></div>`,
+jadwal:()=>bk()+head('JADWAL','Pilih jenis jadwal')+`<div class="grid">${[['pelajaran','📚','Jadwal Pelajaran','Mata pelajaran tiap hari'],['piket','🧹','Jadwal Piket','Petugas piket kelas'],['mbg','🍱','Jadwal MBG','Ambil & kembalikan MBG']].map((x,i)=>`<a class="card menu-i rv" style="--i:${i+2}" href="#/${x[0]}"><div class="ic">${x[1]}</div><div><h3>${x[2]}</h3><p>${x[3]}</p></div></a>`).join('')}</div>`,
+pelajaran:()=>bk('jadwal','Jadwal')+head('JADWAL PELAJARAN XA','Hari '+hari)+tabs()+`<div class="card rv">${J[hari].split('\n').map(l=>{const t=l.slice(0,11),n=l.slice(12),c=/ISTIRAHAT/.test(n)?'br':/UPACARA|LITERASI|BERSERI|Kokulikuler/.test(n)?'sp':'';return`<div class="tl ${c}"><time>${t}</time><span>${n}</span></div>`}).join('')}</div>`,
+piket:()=>bk('jadwal','Jadwal')+head('JADWAL PIKET X AD-ASTRA','Hari '+hari)+tabs()+`<div class="card rv"><div class="sec">🧹 PETUGAS PIKET — ${hari}</div><div class="chips">${PK[hari].split(',').map(n=>`<span class="chip">${n}</span>`).join('')}</div></div>`,
+mbg:()=>{const c=a=>`<div class="chips">${a.split(',').map(n=>`<span class="chip">${n}</span>`).join('')}</div>`;
+ return bk('jadwal','Jadwal')+head('DAFTAR PIKET MBG 10.A','Hari '+hari)+tabs()+`<div class="card rv"><div class="sec">🍱 NGAMBIL MBG</div>${c(MB[hari][0])}<div class="sec" style="margin-top:20px">🔄 KEMBALIIN MBG</div>${c(MB[hari][1])}</div>`},
+prestasi:()=>bk()+head('PRESTASI KELAS','Galeri pencapaian Ad Astra')+`<div class="card empty rv"><span class="big">🌠</span><h3 style="margin:14px 0 6px;color:var(--gd)">Belum Ada Prestasi</h3><p class="sub" style="margin:0">Bintang pertama kita sedang dalam perjalanan. Nantikan pencapaian Ad Astra!</p></div>`,
+kesepakatan:()=>{const k=[['🕐','Hadir tepat waktu dan mempersiapkan diri sebelum pembelajaran dimulai'],['📝','Menyelesaikan tugas dengan penuh tanggung jawab dan mengumpulkannya tepat waktu'],['🛡️','Menjunjung tinggi kejujuran dalam belajar, mengerjakan tugas, dan mengikuti penilaian'],['💬','Aktif berdiskusi dan berpendapat dengan tetap menghargai pendapat orang lain'],['🤝','Menghormati guru, teman, dan seluruh warga sekolah melalui sikap dan tutur kata santun'],['💞','Saling membantu dan tidak melakukan perundungan dalam bentuk apa pun'],['🧹','Menjaga kebersihan, kerapian, dan kenyamanan kelas sebagai rumah belajar bersama'],['🏅','Menjaga nama baik Kelas melalui sikap, prestasi, dan perilaku positif'],['📱','Menggunakan teknologi secara bijak untuk mendukung proses pembelajaran'],['⚖️','Bersedia menerima konsekuensi yang telah disepakati apabila melanggar kesepakatan kelas']];
+ return bk()+head('KESEPAKATAN KELAS X AD ASTRA','“To The Stars”')+`<p class="rv" style="--i:2;line-height:1.7">Kami, Murid Kelas X AD Astra, berkomitmen untuk menciptakan lingkungan belajar yang disiplin, saling menghargai, dan penuh semangat untuk terus berkembang. Oleh karena itu, kami menyepakati hal-hal berikut:</p>
+ <div class="grid" style="margin-top:16px">${k.map((x,i)=>`<div class="pact rv" style="--i:${i+3}"><span class="ic">${x[0]}</span><p>${x[1]}</p></div>`).join('')}</div>
+ <div class="commit rv" style="--i:14"><h3>KOMITMEN BERSAMA</h3><p>Kami bukan hanya sekumpulan murid dalam satu kelas, tetapi sebuah keluarga yang tumbuh bersama. Kami akan saling mendukung ketika ada yang kesulitan, saling mengingatkan ketika ada yang lalai, dan bersama-sama melangkah menuju masa depan yang lebih baik. Melalui kerja keras, disiplin, dan kebersamaan, kami percaya bahwa tidak ada impian yang terlalu tinggi untuk diraih melalui perjuangan.</p></div>`},
+guru:()=>bk()+head('GURU PENGAJAR','Pembimbing Kelas 10 A')+`<div class="card mem rv" style="margin-bottom:14px"><div class="av L">WK</div><div><b>Yogi Vituazi, S.Pd</b><em>★ Wali Kelas</em></div></div><div class="grid">${GURU.map((g,i)=>`<div class="card gc rv" style="--i:${Math.min(i,14)}"><div class="code">${g[0]}</div><div><b>${g[1]}</b><span>${g[2]}</span></div></div>`).join('')}</div>`,
+terima:()=>`<div class="hero" style="padding-top:30px"><div class="orbit rv"><i></i><i></i><img src="${LOGO}" alt="Logo"></div><h1 class="title rv" style="--i:2">TERIMA KASIH</h1><p class="sub rv" style="--i:3;font-size:15px;line-height:1.7">Terima kasih telah mampir ke jagat kecil kami.<br>Sampai jumpa di antara bintang-bintang ✨</p><a class="btn rv" style="--i:4" href="#/">Kembali ke Beranda</a></div>`
+};
+function cari(q){q=q.toLowerCase();document.querySelectorAll('#lst .card').forEach(c=>c.style.display=c.dataset.n.includes(q)?'':'none')}
+window.cari=cari;
+let last='';
+function route(){const k=location.hash.replace('#/','')||'home',f=P[k]||P.home,v=$('#view');
+ const same=k==last;last=k;v.innerHTML=`<div class="${same?'':'pg'}">${f()}</div>`;if(!same)window.scrollTo({top:0,behavior:'smooth'})}
+addEventListener('hashchange',route);route();
+
+/* ===== LATAR BERGERAK ===== */
+const c=$('#sky'),x=c.getContext('2d');let W,H,S=[],sh=[];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight;S=Array.from({length:Math.min(220,W*H/5000|0)},()=>({x:Math.random()*W,y:Math.random()*H,z:Math.random()*2+.3,t:Math.random()*6}))}
+function loop(){x.clearRect(0,0,W,H);
+ for(const s of S){s.y+=s.z*.18;s.x+=s.z*.06;if(s.y>H)s.y=0;if(s.x>W)s.x=0;s.t+=.03;x.globalAlpha=.35+.65*Math.abs(Math.sin(s.t));x.fillStyle=s.z>1.7?'#9be3ff':'#fff';x.beginPath();x.arc(s.x,s.y,s.z*.7,0,7);x.fill()}
+ if(Math.random()<.01)sh.push({x:Math.random()*W+W*.3,y:Math.random()*H*.4,l:0});
+ sh=sh.filter(m=>m.l<55);
+ for(const m of sh){m.x-=9;m.y+=5;m.l++;const g=x.createLinearGradient(m.x,m.y,m.x+70,m.y-39);g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(1,'rgba(255,255,255,0)');x.globalAlpha=1-m.l/55;x.strokeStyle=g;x.lineWidth=2;x.beginPath();x.moveTo(m.x,m.y);x.lineTo(m.x+70,m.y-39);x.stroke()}
+ requestAnimationFrame(loop)}
+addEventListener('resize',rs);rs();loop();
+</script>
+</body>
+</html>
